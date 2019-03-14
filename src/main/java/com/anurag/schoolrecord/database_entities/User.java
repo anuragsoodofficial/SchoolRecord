@@ -4,22 +4,27 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
 @Table(name="user")
 public class User {
 	
+	@NotBlank
 	@Column(name = "first_name")
 	private String firstName;
 	
+	@NotBlank
 	@Column(name = "last_name")
 	private String lastName;
 	
+	@NotBlank
 	@Id
 	@Column(name = "username")
 	private String username;
 	
+	@NotBlank
 	@Column(name = "password")
 	private String password;
 	
