@@ -16,8 +16,24 @@ public class SignupServices {
 	public ArrayList<User> users = new ArrayList<>();
 	
 	public void addUser(User user) {
-		users.add(user);
-		userRepository.save(user);
+		if(!user.getFirstName().contains(" ") && !user.getLastName().contains(" ")) {
+			users.add(user);
+			userRepository.save(user);
+		}else if(user.getFirstName().contains(" ") && user.getLastName().contains(" ")) {
+			user.setFirstName(user.getFirstName().substring(0,user.getFirstName().indexOf(' ')));
+			user.setLastName(user.getLastName().substring(0,user.getLastName().indexOf(' ')));
+			users.add(user);
+			userRepository.save(user);
+		}else if(user.getFirstName().contains(" ")) {
+			user.setFirstName(user.getFirstName().substring(0,user.getFirstName().indexOf(' ')));
+			users.add(user);
+			userRepository.save(user);
+		}else if(user.getLastName().contains(" ")) {
+			user.setLastName(user.getLastName().substring(0,user.getLastName().indexOf(' ')));
+			users.add(user);
+			userRepository.save(user);
+		}
+		
 	}
 	
 	public Iterable<User> getAllUser(){
