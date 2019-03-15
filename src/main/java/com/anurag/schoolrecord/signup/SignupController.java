@@ -15,11 +15,13 @@ public class SignupController {
 	@Autowired
 	SignupServices signUpServices;
 
+	//showing all users
 	@RequestMapping("/users")
 	public Iterable<User> getAllUsers(){
 		return signUpServices.getAllUser();
 	}
 	
+	//adding the user
 	@RequestMapping(method=RequestMethod.POST,value="/signup")
 	public void signup(@RequestBody User user) {
 		signUpServices.addUser(user);;

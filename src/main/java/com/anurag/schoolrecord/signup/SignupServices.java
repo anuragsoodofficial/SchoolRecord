@@ -15,8 +15,9 @@ public class SignupServices {
 	
 	public ArrayList<User> users = new ArrayList<>();
 	
+	//Add users
 	public void addUser(User user) {
-		
+		//first_name and last_name validations
 		if(user.getFirstName().contains(" ") && user.getLastName().contains(" ")) {
 			user.setFirstName(user.getFirstName().substring(0,user.getFirstName().indexOf(' ')));
 			user.setLastName(user.getLastName().substring(0,user.getLastName().indexOf(' ')));
@@ -34,6 +35,7 @@ public class SignupServices {
 		
 	}
 	
+	//Show all the users
 	public Iterable<User> getAllUser(){
 		return userRepository.findAll();
 	}
