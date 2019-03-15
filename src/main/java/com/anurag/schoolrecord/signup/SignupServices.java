@@ -24,8 +24,6 @@ public class SignupServices {
 			user.setFirstName(user.getFirstName().substring(0,user.getFirstName().indexOf(' ')));
 		}else if(user.getLastName().contains(" ")) {
 			user.setLastName(user.getLastName().substring(0,user.getLastName().indexOf(' ')));
-		}else if(user.getFirstName().isBlank()) {
-			
 		}
 		
 		
