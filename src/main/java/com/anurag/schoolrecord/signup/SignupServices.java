@@ -1,6 +1,7 @@
 package com.anurag.schoolrecord.signup;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ public class SignupServices {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public ArrayList<User> users = new ArrayList<>();
 	
 	//Add users
 	public void addUser(User user) {
@@ -29,13 +29,25 @@ public class SignupServices {
 		}
 		
 		
-		users.add(user);
 		userRepository.save(user);
 		
 	}
 	
 	//Show all the users
-	public Iterable<User> getAllUser(){
-		return userRepository.findAll();
+	public ArrayList<User> getAllUser(){
+		ArrayList<User> users = new ArrayList<>();
+		userRepository.findAll().forEach(users::add);
+		return users;
+	}
+	
+	//To search a user.
+	public Optional<User> getUser(String username) {
+		return userRepository.findById(username);
+	}
+	
+	
+	//Remove a user
+	public void removeUser(String username) {
+		userRepository.deleteById(username);
 	}
 }
