@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.anurag.schoolrecord.database_entities.User;
-import com.anurag.schoolrecord.database_entities.UserRepository;
 
 @Service
 public class SignupServices {
