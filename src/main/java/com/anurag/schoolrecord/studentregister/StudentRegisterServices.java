@@ -21,8 +21,8 @@ public class StudentRegisterServices {
 	}
 	
 	//Get a student by its rollNo
-	public List<Student> findStudentByRollNo(Iterable<Integer> rollNo){
-		return studentRepository.findAllById(rollNo);
+	public Optional<Student> findStudentByRollNo(int rollNo){
+		return studentRepository.findById(rollNo);
 	}
 	
 	//Get all student details

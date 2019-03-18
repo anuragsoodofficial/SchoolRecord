@@ -27,7 +27,7 @@ public class SignupController {
 	//adding the user
 	@RequestMapping(method=RequestMethod.POST,value="/signup")
 	public void signup(@RequestBody User user) {
-		signUpServices.addUser(user);;
+		signUpServices.addUser(user);
 	}
 	
 	

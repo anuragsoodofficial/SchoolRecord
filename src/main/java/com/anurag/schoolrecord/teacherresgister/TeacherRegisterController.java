@@ -1,12 +1,13 @@
 package com.anurag.schoolrecord.teacherresgister;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anurag.schoolrecord.database_entities.Teacher;
@@ -19,13 +20,13 @@ public class TeacherRegisterController {
 	
 		//add a teacher
 		@RequestMapping(value = "/teacher", method = RequestMethod.POST)
-		public void addStudent(Teacher teacher) {
+		public void addTeacher(@RequestBody Teacher teacher) {
 			teacherRegisterService.addTeacher(teacher);
 		}
 			
 		//get a teacher by its id
-		@RequestMapping("/teacher?tacher_id=")
-		public List<Teacher> findTeacherByItsId(Iterable<Integer> teacherId){
+		@RequestMapping("/teacher/get")
+		public Optional<Teacher> findTeacherByItsId(@RequestParam(name="teacherId",defaultValue="Unknown") int teacherId){
 			return teacherRegisterService.findTeacherById(teacherId);
 			}
 		
@@ -35,8 +36,8 @@ public class TeacherRegisterController {
 			return teacherRegisterService.getAllTeachers();
 		}
 		
-		@RequestMapping(method=RequestMethod.DELETE,value="\"/teacher?teacher_id=\"")
-		public void removeUser(@PathVariable int teacherId) {
+		@RequestMapping(method=RequestMethod.DELETE,value="/teacher")
+		public void removeUser(@RequestParam(name="teacherId",defaultValue="Unknown") int teacherId) {
 			teacherRegisterService.removeTeacher(teacherId);
 		}
 }

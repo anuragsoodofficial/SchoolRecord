@@ -6,8 +6,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anurag.schoolrecord.database_entities.Student;
@@ -19,13 +21,13 @@ public class StudentRegisterController {
 	private StudentRegisterServices studentRegisterServices;
 	
 	//add a student
-	@RequestMapping(value = "/student", method = RequestMethod.POST)
-	public void addStudent(Student student) {
+	@RequestMapping(method = RequestMethod.POST, value = "/student")
+	public void addStudent(@RequestBody Student student) {
 		studentRegisterServices.addStudent(student);
 	}
 	//get a student by its rollNo
-	@RequestMapping("/student?roll_no=")
-	public List<Student> getStudentByRollNo(Iterable<Integer> rollNo){
+	@RequestMapping("/student/get")
+	public Optional<Student> getStudentByRollNo(@RequestParam(name = "rollNo",defaultValue="Unknown") int rollNo){
 		return studentRegisterServices.findStudentByRollNo(rollNo);
 	}
 	
@@ -35,8 +37,8 @@ public class StudentRegisterController {
 		return studentRegisterServices.getAllStudent();
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE,value="\"/student?roll_no=\"")
-	public void removeUser(@PathVariable int rollNo) {
+	@RequestMapping(method=RequestMethod.DELETE,value="/student")
+	public void removeUser(@RequestParam(name = "rollNo",defaultValue="Unknown") int rollNo) {
 		studentRegisterServices.removeStudent(rollNo);
 	}
 }

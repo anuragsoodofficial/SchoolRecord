@@ -1,10 +1,11 @@
 package com.anurag.schoolrecord.teacherresgister;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.anurag.schoolrecord.database_entities.Teacher;
 
 @Service
@@ -18,8 +19,8 @@ public class TeacherRegisterService {
 		teacherRepository.save(teacher);
 	}
 	//Get a teacher details by its id
-	public List<Teacher> findTeacherById(Iterable<Integer> teacherId){
-		return teacherRepository.findAllById(teacherId);
+	public Optional<Teacher> findTeacherById(int teacherId){
+		return teacherRepository.findById(teacherId);
 	}
 	//Get all teachers details
 	public ArrayList<Teacher> getAllTeachers(){

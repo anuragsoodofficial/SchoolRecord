@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "teacher")
@@ -12,10 +13,13 @@ public class Teacher {
 	@Id
 	@Column(name = "teacher_id")
 	private int teacherId;
+	@NotBlank
 	@Column(name = "first_name")
 	private String firstName;
+	@NotBlank
 	@Column(name = "last_name")
 	private String lastName;
+	@NotBlank
 	@Column(name = "subject_id")
 	private String subjectId;
 	
@@ -64,6 +68,8 @@ public class Teacher {
 			return false;
 		return true;
 	}
+	
+	
 	public int getTeacherId() {
 		return teacherId;
 	}
