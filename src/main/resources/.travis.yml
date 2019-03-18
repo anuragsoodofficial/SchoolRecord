@@ -1,17 +1,1 @@
 language: java
-jdk: 
-- oraclejdk8
-- oraclejdk11
-
-branches:
-    only:
-        - master
-
-deploy:
-    github_token: mwpxieZh_zD1-rdrOmWZkg
-    provider: pages
-    target_branch: master
-    skip_cleanup: true
-    local_dir: public
-    on:
-        branch: master
