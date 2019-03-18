@@ -6,25 +6,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 
 @Entity
 @Table(name="user")
 public class User {
 	
-	@NotBlank
+	@NotBlank(message="First name is compulsary")
 	@Column(name = "first_name")
 	private String firstName;
 	
-	@NotBlank
+	@NotBlank(message="Last name is compulsary")
 	@Column(name = "last_name")
 	private String lastName;
 	
-	@NotBlank
+	@NotBlank(message="Username is compulsary")
 	@Id
 	@Column(name = "username")
 	private String username;
 	
 	@NotBlank
+	@Length(min=7, message="Password should be at least 7 characters long")
 	@Column(name = "password")
 	private String password;
 	

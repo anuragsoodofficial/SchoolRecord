@@ -16,6 +16,17 @@ public class TeacherRegisterService {
 	
 	//Add teacher details
 	public void addTeacher(Teacher teacher) {
+		//first_name and last_name validations
+				if(teacher.getFirstName().contains(" ") && teacher.getLastName().contains(" ")) {
+					teacher.setFirstName(teacher.getFirstName().substring(0,teacher.getFirstName().indexOf(' ')));
+					teacher.setLastName(teacher.getLastName().substring(0,teacher.getLastName().indexOf(' ')));
+				}else if(teacher.getFirstName().contains(" ")) {
+					teacher.setFirstName(teacher.getFirstName().substring(0,teacher.getFirstName().indexOf(' ')));
+				}else if(teacher.getLastName().contains(" ")) {
+					teacher.setLastName(teacher.getLastName().substring(0,teacher.getLastName().indexOf(' ')));
+				}
+				
+				
 		teacherRepository.save(teacher);
 	}
 	//Get a teacher details by its id

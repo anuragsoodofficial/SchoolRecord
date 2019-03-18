@@ -11,15 +11,16 @@ import javax.validation.constraints.NotBlank;
 public class Student {
 	
 	@Id
+	@NotBlank(message= "Roll no is compulsary")
 	@Column(name = "roll_no")
 	private int rollNo;
-	@NotBlank
+	@NotBlank(message= "First name is compulsary")
 	@Column(name = "first_name")
 	private String firstName;
-	@NotBlank
+	@NotBlank(message= "Last name is compulsary")
 	@Column(name = "last_name")
 	private String lastName;
-	@NotBlank
+	@NotBlank(message= "Course Id is compulsary")
 	@Column(name = "course_id")
 	private String courseId;
 	

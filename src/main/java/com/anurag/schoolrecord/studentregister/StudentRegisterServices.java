@@ -17,6 +17,17 @@ public class StudentRegisterServices {
 	
 	//Add Student details
 	public void addStudent(Student student) {
+		//first_name and last_name validations
+				if(student.getFirstName().contains(" ") && student.getLastName().contains(" ")) {
+					student.setFirstName(student.getFirstName().substring(0,student.getFirstName().indexOf(' ')));
+					student.setLastName(student.getLastName().substring(0,student.getLastName().indexOf(' ')));
+				}else if(student.getFirstName().contains(" ")) {
+					student.setFirstName(student.getFirstName().substring(0,student.getFirstName().indexOf(' ')));
+				}else if(student.getLastName().contains(" ")) {
+					student.setLastName(student.getLastName().substring(0,student.getLastName().indexOf(' ')));
+				}
+				
+		
 		studentRepository.save(student);
 	}
 	
