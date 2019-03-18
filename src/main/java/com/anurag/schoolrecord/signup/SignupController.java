@@ -32,12 +32,12 @@ public class SignupController {
 	
 	
 	//getting a user by its username
-	@RequestMapping("users/{username}")
+	@RequestMapping("users?username=")
 	public Optional<User> getUser(@PathVariable String username) {
 		return signUpServices.getUser(username);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE,value="/users/{username}")
+	@RequestMapping(method=RequestMethod.DELETE,value="/users?username=")
 	public void removeUser(@PathVariable String username) {
 		signUpServices.removeUser(username);
 	}

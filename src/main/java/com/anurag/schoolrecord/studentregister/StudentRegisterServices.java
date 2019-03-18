@@ -32,5 +32,8 @@ public class StudentRegisterServices {
 		return students;
 	}
 	//Delete a student details
-	//update a student record
+		public void removeStudent(int rollNo) {
+			studentRepository.deleteById(rollNo);
+		}
+	
 }
