@@ -3,6 +3,7 @@ package com.anurag.schoolrecord.studentregister;
 import java.util.ArrayList;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class StudentRegisterServices {
 		
 		studentRepository.save(student);
 	}
+
 	
 	//Get a student by its rollNo
 	public Optional<Student> findStudentByRollNo(int rollNo){
