@@ -40,4 +40,10 @@ public class TeacherRegisterController {
 		public void removeUser(@RequestParam(name="teacherId",defaultValue="Unknown") int teacherId) {
 			teacherRegisterService.removeTeacher(teacherId);
 		}
+		
+		//update a teacher
+				@RequestMapping(value = "/teacher", method = RequestMethod.POST)
+				public void updateTeacher(@RequestBody Teacher teacher) {
+					teacherRegisterService.updateTeacher(teacher);
+				}
 }

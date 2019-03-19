@@ -48,4 +48,21 @@ public class SignupServices {
 	public void removeUser(String username) {
 		userRepository.deleteById(username);
 	}
+	
+	//Update users
+		public void updateUser(User user) {
+			//first_name and last_name validations
+			if(user.getFirstName().contains(" ") && user.getLastName().contains(" ")) {
+				user.setFirstName(user.getFirstName().substring(0,user.getFirstName().indexOf(' ')));
+				user.setLastName(user.getLastName().substring(0,user.getLastName().indexOf(' ')));
+			}else if(user.getFirstName().contains(" ")) {
+				user.setFirstName(user.getFirstName().substring(0,user.getFirstName().indexOf(' ')));
+			}else if(user.getLastName().contains(" ")) {
+				user.setLastName(user.getLastName().substring(0,user.getLastName().indexOf(' ')));
+			}
+			
+			
+			userRepository.save(user);
+			
+		}
 }

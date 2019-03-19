@@ -41,4 +41,10 @@ public class SubjectRegisterController {
 	public void removeSubject(@RequestParam(name = "subjectId",defaultValue="Unknown") String subjectId) {
 		subjectRegisterService.removeSubject(subjectId);
 	}
+	
+	//Update a subject
+	@RequestMapping(method = RequestMethod.PUT,value="/subjects")
+	public void updateSubject(@RequestBody Subject subject) {
+		subjectRegisterService.updateSubject(subject);
+	}
 }

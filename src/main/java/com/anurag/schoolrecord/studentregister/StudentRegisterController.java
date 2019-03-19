@@ -1,11 +1,9 @@
 package com.anurag.schoolrecord.studentregister;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,4 +39,10 @@ public class StudentRegisterController {
 	public void removeUser(@RequestParam(name = "rollNo",defaultValue="Unknown") int rollNo) {
 		studentRegisterServices.removeStudent(rollNo);
 	}
+	
+	//update a student
+		@RequestMapping(method = RequestMethod.PUT, value = "/student")
+		public void updateStudent(@RequestBody Student student) {
+			studentRegisterServices.updateStudent(student);
+		}
 }

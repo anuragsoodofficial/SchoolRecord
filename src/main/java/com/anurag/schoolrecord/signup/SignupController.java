@@ -41,4 +41,10 @@ public class SignupController {
 	public void removeUser(@PathVariable String username) {
 		signUpServices.removeUser(username);
 	}
+	
+	//update the user
+		@RequestMapping(method=RequestMethod.PUT,value="/signup")
+		public void updateUser(@RequestBody User user) {
+			signUpServices.updateUser(user);
+		}
 }

@@ -35,4 +35,9 @@ public class SubjectRegisterService {
 	public void removeSubject(String subjectId) {
 		subjectRegisterRepository.deleteById(subjectId);
 	}
+	
+	//Update a subject
+	public void updateSubject(Subject subject) {
+		subjectRegisterRepository.save(subject);
+	}
 }

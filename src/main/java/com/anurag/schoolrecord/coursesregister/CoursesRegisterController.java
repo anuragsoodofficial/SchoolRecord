@@ -41,4 +41,9 @@ public class CoursesRegisterController {
 	public void removeCourse(@RequestParam(name = "courseId",defaultValue = "Unknown") String courseId) {
 		coursesRegisterServices.removeCourse(courseId);
 	}
+	
+	@RequestMapping(method=RequestMethod.PUT,value="/courses")
+	public void updateCourse(@RequestBody Courses courses) {
+		coursesRegisterServices.updateCourse(courses);
+	}
 }

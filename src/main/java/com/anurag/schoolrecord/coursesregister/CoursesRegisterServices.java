@@ -35,4 +35,9 @@ public class CoursesRegisterServices {
 		public void removeCourse(String courseId) {
 			courseRegisterRepository.deleteById(courseId);
 		}
+		
+		//Update a course
+		public void updateCourse(Courses courses) {
+			courseRegisterRepository.save(courses);
+		}
 }
