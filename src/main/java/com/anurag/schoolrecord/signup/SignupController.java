@@ -4,10 +4,15 @@ package com.anurag.schoolrecord.signup;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anurag.schoolrecord.entities.User;
@@ -19,13 +24,13 @@ public class SignupController {
 	SignupServicesImpl signUpServices;
 
 	//showing all users
-	@RequestMapping("/users")
+	@GetMapping("/users")
 	public Iterable<User> getAllUsers(){
 		return signUpServices.getAllUser();
 	}
 	
 	//adding the user
-	@RequestMapping(method=RequestMethod.POST,value="/signup")
+	@PostMapping("/signup")
 	public String signup(@RequestBody User user) {
 		signUpServices.addUser(user);
 		return "Success";
@@ -33,19 +38,19 @@ public class SignupController {
 	
 	
 	//getting a user by its username
-	@RequestMapping("users?username=")
-	public Optional<User> getUser(@PathVariable String username) {
+	@GetMapping("/student/get")
+	public Optional<User> getUser(@RequestParam(name = "username",defaultValue="Unknown") String username) {
 		return signUpServices.getUser(username);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE,value="/users?username=")
-	public String removeUser(@PathVariable String username) {
+	@DeleteMapping("/users")
+	public String removeUser(@RequestParam(name = "username",defaultValue="Unknown") String username) {
 		signUpServices.removeUser(username);
 		return "Removed Successfully";
 	}
 	
 	//update the user
-		@RequestMapping(method=RequestMethod.PUT,value="/signup")
+		@PutMapping("/signup")
 		public String updateUser(@RequestBody User user) {
 			signUpServices.updateUser(user);
 			return "Updated Successfully";

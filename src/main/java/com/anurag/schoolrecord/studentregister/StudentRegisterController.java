@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,31 +23,31 @@ public class StudentRegisterController {
 	private StudentRegisterServiceImpl studentRegisterServiceImpl;
 	
 	//add a student
-	@RequestMapping(method = RequestMethod.POST, value = "/student")
+	@PostMapping("/student")
 	public String addStudent(@RequestBody Student student) {
 		studentRegisterServiceImpl.addStudent(student);
 		return "Success";
 	}
 	//get a student by its rollNo
-	@RequestMapping("/student/get")
+	@GetMapping("/student/get")
 	public Optional<Student> getStudentByRollNo(@RequestParam(name = "rollNo",defaultValue="Unknown") int rollNo){
 		return studentRegisterServiceImpl.findStudentByRollNo(rollNo);
 	}
 	
 	//get all students details
-	@RequestMapping("/student")
+	@GetMapping("/student")
 	public ArrayList<Student> getAllStudents() {
 		return studentRegisterServiceImpl.getAllStudent();
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE,value="/student")
+	@DeleteMapping("/student")
 	public String removeUser(@RequestParam(name = "rollNo",defaultValue="Unknown") int rollNo) {
 		studentRegisterServiceImpl.removeStudent(rollNo);
 		return "Removed Successfully";
 	}
 	
 	//update a student
-		@RequestMapping(method = RequestMethod.PUT, value = "/student")
+		@PutMapping("/student")
 		public String updateStudent(@RequestBody Student student) {
 			studentRegisterServiceImpl.updateStudent(student);
 			return "Updated Successfully";

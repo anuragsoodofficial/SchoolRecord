@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,32 +23,32 @@ public class CourseRegisterController {
 	private CourseRegisterServicesImpl courseRegisterServicesImpl;
 	
 	//Get all courses
-	@RequestMapping("/courses")
+	@GetMapping("/courses")
 	public ArrayList<Course> getAllCourses(){
 		return courseRegisterServicesImpl.getAllCourses();
 	}
 	
 	//Add a course
-	@RequestMapping(method = RequestMethod.POST,value = "/courses")
+	@PostMapping("/courses")
 	public String addCourse(@RequestBody Course course) {
 		courseRegisterServicesImpl.addCourse(course);
 		return "Added Successfully";
 	}
 	
 	//Get a course  by its id
-	@RequestMapping("/courses/get")
+	@GetMapping("/courses/get")
 	public Optional<Course> getCourseByItsId(@RequestParam(name = "courseId",defaultValue = "Unknown") String courseId){
 		return courseRegisterServicesImpl.getCourseByItsId(courseId);
 	}
 	
 	//Delete a course
-	@RequestMapping(method = RequestMethod.DELETE, value = "/courses")
+	@DeleteMapping("/courses")
 	public String removeCourse(@RequestParam(name = "courseId",defaultValue = "Unknown") String courseId) {
 		courseRegisterServicesImpl.removeCourse(courseId);
 		return "Removed Successfully";
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/courses")
+	@PutMapping("/courses")
 	public String updateCourse(@RequestBody Course course) {
 		courseRegisterServicesImpl.updateCourse(course);
 		return "Updated Successfully";
