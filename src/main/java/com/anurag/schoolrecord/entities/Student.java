@@ -1,4 +1,4 @@
-package com.anurag.schoolrecord.database_entities;
+package com.anurag.schoolrecord.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

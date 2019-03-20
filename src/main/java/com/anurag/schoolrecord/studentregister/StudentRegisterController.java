@@ -10,39 +10,42 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.anurag.schoolrecord.database_entities.Student;
+import com.anurag.schoolrecord.entities.Student;
 
 @RestController
 public class StudentRegisterController {
 	
 	@Autowired
-	private StudentRegisterServices studentRegisterServices;
+	private StudentRegisterServiceImpl studentRegisterServiceImpl;
 	
 	//add a student
 	@RequestMapping(method = RequestMethod.POST, value = "/student")
-	public void addStudent(@RequestBody Student student) {
-		studentRegisterServices.addStudent(student);
+	public String addStudent(@RequestBody Student student) {
+		studentRegisterServiceImpl.addStudent(student);
+		return "Success";
 	}
 	//get a student by its rollNo
 	@RequestMapping("/student/get")
 	public Optional<Student> getStudentByRollNo(@RequestParam(name = "rollNo",defaultValue="Unknown") int rollNo){
-		return studentRegisterServices.findStudentByRollNo(rollNo);
+		return studentRegisterServiceImpl.findStudentByRollNo(rollNo);
 	}
 	
 	//get all students details
 	@RequestMapping("/student")
 	public ArrayList<Student> getAllStudents() {
-		return studentRegisterServices.getAllStudent();
+		return studentRegisterServiceImpl.getAllStudent();
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE,value="/student")
-	public void removeUser(@RequestParam(name = "rollNo",defaultValue="Unknown") int rollNo) {
-		studentRegisterServices.removeStudent(rollNo);
+	public String removeUser(@RequestParam(name = "rollNo",defaultValue="Unknown") int rollNo) {
+		studentRegisterServiceImpl.removeStudent(rollNo);
+		return "Removed Successfully";
 	}
 	
 	//update a student
 		@RequestMapping(method = RequestMethod.PUT, value = "/student")
-		public void updateStudent(@RequestBody Student student) {
-			studentRegisterServices.updateStudent(student);
+		public String updateStudent(@RequestBody Student student) {
+			studentRegisterServiceImpl.updateStudent(student);
+			return "Updated Successfully";
 		}
 }

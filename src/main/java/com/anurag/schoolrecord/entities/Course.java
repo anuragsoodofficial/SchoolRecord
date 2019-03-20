@@ -1,4 +1,4 @@
-package com.anurag.schoolrecord.database_entities;
+package com.anurag.schoolrecord.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "courses")
-public class Courses {
+public class Course {
 
 	@Id
 	@Column(name = "course_id")
@@ -46,7 +46,7 @@ public class Courses {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Courses other = (Courses) obj;
+		Course other = (Course) obj;
 		if (courseId == null) {
 			if (other.courseId != null)
 				return false;

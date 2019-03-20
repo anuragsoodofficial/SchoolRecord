@@ -10,40 +10,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.anurag.schoolrecord.database_entities.Teacher;
+import com.anurag.schoolrecord.entities.Teacher;
 
 @RestController
 public class TeacherRegisterController {
 
 	@Autowired
-	TeacherRegisterService teacherRegisterService;
+	TeacherRegisterServiceImpl teacherRegisterServiceImpl;
 	
 		//add a teacher
 		@RequestMapping(value = "/teacher", method = RequestMethod.POST)
-		public void addTeacher(@RequestBody Teacher teacher) {
-			teacherRegisterService.addTeacher(teacher);
+		public String addTeacher(@RequestBody Teacher teacher) {
+			teacherRegisterServiceImpl.addTeacher(teacher);
+			return "Added Successfully";
 		}
 			
 		//get a teacher by its id
 		@RequestMapping("/teacher/get")
 		public Optional<Teacher> findTeacherByItsId(@RequestParam(name="teacherId",defaultValue="Unknown") int teacherId){
-			return teacherRegisterService.findTeacherById(teacherId);
+			return teacherRegisterServiceImpl.findTeacherById(teacherId);
 			}
 		
 		//get all teachers details
 		@RequestMapping("/teacher")
 		public ArrayList<Teacher> getAllTeachers() {
-			return teacherRegisterService.getAllTeachers();
+			return teacherRegisterServiceImpl.getAllTeachers();
 		}
 		
 		@RequestMapping(method=RequestMethod.DELETE,value="/teacher")
-		public void removeUser(@RequestParam(name="teacherId",defaultValue="Unknown") int teacherId) {
-			teacherRegisterService.removeTeacher(teacherId);
+		public String removeUser(@RequestParam(name="teacherId",defaultValue="Unknown") int teacherId) {
+			teacherRegisterServiceImpl.removeTeacher(teacherId);
+			return "Removed Successfully";
 		}
 		
 		//update a teacher
-				@RequestMapping(value = "/teacher", method = RequestMethod.POST)
-				public void updateTeacher(@RequestBody Teacher teacher) {
-					teacherRegisterService.updateTeacher(teacher);
-				}
+			@RequestMapping(value = "/teacher", method = RequestMethod.POST)
+			public String updateTeacher(@RequestBody Teacher teacher) {
+				teacherRegisterServiceImpl.updateTeacher(teacher);
+				return "Updated Successfully";
+			}
 }

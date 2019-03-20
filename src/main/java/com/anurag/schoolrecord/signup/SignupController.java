@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.anurag.schoolrecord.database_entities.User;
+import com.anurag.schoolrecord.entities.User;
 
 @RestController
 public class SignupController {
 	
 	@Autowired
-	SignupServices signUpServices;
+	SignupServicesImpl signUpServices;
 
 	//showing all users
 	@RequestMapping("/users")
@@ -26,8 +26,9 @@ public class SignupController {
 	
 	//adding the user
 	@RequestMapping(method=RequestMethod.POST,value="/signup")
-	public void signup(@RequestBody User user) {
+	public String signup(@RequestBody User user) {
 		signUpServices.addUser(user);
+		return "Success";
 	}
 	
 	
@@ -38,13 +39,15 @@ public class SignupController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE,value="/users?username=")
-	public void removeUser(@PathVariable String username) {
+	public String removeUser(@PathVariable String username) {
 		signUpServices.removeUser(username);
+		return "Removed Successfully";
 	}
 	
 	//update the user
 		@RequestMapping(method=RequestMethod.PUT,value="/signup")
-		public void updateUser(@RequestBody User user) {
+		public String updateUser(@RequestBody User user) {
 			signUpServices.updateUser(user);
+			return "Updated Successfully";
 		}
 }
