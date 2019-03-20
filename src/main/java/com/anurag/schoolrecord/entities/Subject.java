@@ -1,5 +1,7 @@
 package com.anurag.schoolrecord.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "subjects")
-public class Subject {
+public class Subject implements Serializable {
 	@Id
 	@Column(name = "subject_id")
 	private String subjectId;

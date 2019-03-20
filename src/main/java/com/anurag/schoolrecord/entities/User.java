@@ -1,5 +1,7 @@
 package com.anurag.schoolrecord.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name="user")
-public class User {
+public class User implements Serializable {
 	
 	@NotBlank(message="First name is compulsary")
 	@Column(name = "first_name")

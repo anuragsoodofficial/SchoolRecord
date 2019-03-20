@@ -1,5 +1,7 @@
 package com.anurag.schoolrecord.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements Serializable {
 	
 	@Id
 	@NotBlank(message= "Roll no is compulsary")
